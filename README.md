@@ -5,7 +5,7 @@
 
 <br>
 
-Este repositorio aloja la validación empírica y la visualización interactiva del modelo geotensorial aplicado a la **Matriz de Bienestar Humano Territorial (MBHT)** de Chile (Región Metropolitana). Es el resultado de la aplicación práctica de los axiomas establecidos en los tomos I y II de la obra *Ontología Territorial*.
+Este repositorio aloja la validación empírica y la visualización interactiva del modelo geotensorial aplicado a la **Matriz de Bienestar Humano Territorial (MBHT)** de Chile. Es el resultado de la aplicación práctica de los axiomas establecidos en los tomos I y II de la obra *Ontología Territorial*.
 
 ---
 
@@ -16,44 +16,85 @@ Este repositorio aloja la validación empírica y la visualización interactiva 
 
 ---
 
-## 🧠 1. Marco Filosófico: La Firma Cognitiva
-El modelo se aleja drásticamente de la geografía cuantitativa clásica y la cartografía plana. Se sustenta en los siguientes axiomas ontológicos:
+## 1. La Base Empírica: Matriz de Bienestar (MBHT)
+Antes de deformar el espacio, debemos entender qué estamos midiendo. La **Matriz de Bienestar Humano Territorial (MBHT)**, desarrollada por la SUBDERE, busca ir más allá de los índices de pobreza clásicos midiendo las condiciones estructurales del habitar a través de cuatro dimensiones fundamentales:
 
-* **Relación antes que Objeto:** El territorio no es un polígono administrativo (comuna) pasivo, es un *colector relacional vivo*.
-* **Habitar antes que Medir:** No basta con medir un promedio de bienestar; la experiencia territorial está definida por las fracturas y tensiones de sus dimensiones internas.
-* **Memoria antes que Equilibrio:** El territorio guarda en su geometría el rastro de la desigualdad histórica y el poder. El poder es un *deformador geométrico*.
+1. **Dimensión Ambiental:** Calidad del entorno, áreas verdes, contaminación.
+2. **Dimensión de Seguridad:** Exposición a delitos, percepción de riesgo, vulnerabilidad física.
+3. **Dimensión Social:** Cohesión, hacinamiento, calidad de la vivienda.
+4. **Dimensión de Accesibilidad:** Distancia a servicios críticos, transporte, educación y salud.
 
-## 📐 2. Fundamentos Matemáticos (La Física Intrínseca)
-En este proyecto, la matemática no se utiliza como un lenguaje de reducción estadística, sino como un **abrigo formal** para captar la deformación del espacio. El algoritmo en Python realiza la siguiente secuencia:
+El enfoque tradicional de la política pública suele reducir estas cuatro dimensiones a un **promedio simple** (el Índice BHT) y pintarlo sobre el mapa de las comunas. Sin embargo, un "promedio" oculta el desgarro de la experiencia urbana. Un barrio con excelente accesibilidad pero con niveles críticos de delincuencia puede "promediar" un bienestar aceptable, encubriendo una fractura profunda en la experiencia del habitar cotidiano. 
 
-### A. El Continuum Geotensorial
-Utilizando la técnica de árboles espaciales (`cKDTree`) y un filtro gaussiano bidimensional sobre los datos de la Subsecretaría de Desarrollo Regional (SUBDERE), los valores discretos poblacionales se funden en un fluido ininterrumpido. 
-
-### B. Tensión Local ($\alpha$) como Observable Fundamental
-Un territorio puede promediar un índice de bienestar alto, pero si tiene una seguridad excelente y un entorno ambiental degradado, sufre internamente. Calculamos la **varianza estadística** entre las 4 subdimensiones de la MBHT (Ambiental, Seguridad, Social, Accesibilidad) para extraer el Tensor $\alpha$ (Tensión Local).
-
-### C. Fricción Relacional (Los "Muros" Invisibles)
-Calculamos los gradientes espaciales del bienestar general ($dx, dy$) y los modulamos por la Tensión ($\alpha$).
-La ecuación de la traza del tensor métrico deforma el mapa geométricamente:
-
-```math
-Friccion = (1 + \alpha \cdot \nabla BHT_x^2) + (1 + \alpha \cdot \nabla BHT_y^2) - 2
-```
-
-El resultado de esta fricción territorial se inyecta directamente como la elevación (eje Z) en la topología. Las zonas rojas que se levantan como muros representan físicamente barreras de fricción severa que quiebran las trayectorias de vida.
-
-## 🛑 3. El Píxel Ontológico (Sistema H3)
-Para consolidar la deformación, utilizamos la malla hexagonal **H3**. ¿Por qué un hexágono? Porque preserva la vecindad espacial de forma isométrica (todas las celdas vecinas están a la misma distancia del centro). El hexágono actúa como el **píxel ontológico**, agrupando la tensión sin distorsionarla con las fronteras artificiales del Estado.
-
-## 🛠️ 4. Stack Tecnológico
-* **Python:** Lenguaje principal de procesamiento.
-* **GeoPandas & SciPy:** Tratamiento espacial y cálculo del continuum mediante *k-d trees* y cálculo de gradientes.
-* **H3 (Uber):** Sistema de indexación geoespacial jerárquico.
-* **Deck.GL / PyDeck:** Motor de renderizado WebGL para pintar y extruir las deformaciones masivas a 60 FPS directo en el navegador.
+Para revelar estas fracturas ocultas, debemos abandonar la estadística simple y pasar a la física espacial.
 
 ---
 
-## 📚 5. Citas y Bibliografía
+## 2. El Salto Filosófico: La Firma Cognitiva
+El modelo se aleja drásticamente de la geografía cuantitativa clásica sustentándose en los siguientes axiomas ontológicos:
+
+* **Relación antes que Objeto:** El territorio no es un polígono administrativo (comuna) pasivo, es un *colector relacional vivo*.
+* **Habitar antes que Medir:** No basta con medir un promedio de bienestar; la experiencia territorial está definida por las tensiones de sus dimensiones internas.
+* **Memoria antes que Equilibrio:** El territorio guarda en su geometría el rastro de la desigualdad y el poder. El poder actúa como un *deformador geométrico*.
+
+---
+
+## 3. Desarrollo Matemático: La Física Intrínseca del Territorio
+Para capturar esta firma cognitiva, utilizamos la matemática tensorial no como una herramienta de reducción, sino como un **abrigo formal** capaz de preservar la complejidad.
+
+### A. El Campo Escalar Continuo ($W$)
+El algoritmo primero transforma los datos de los polígonos discretos en un **campo escalar continuo** $W(x, y)$ mediante algoritmos de vecindad espacial (*k-d tree*) y convolución gaussiana. El territorio deja de tener "fronteras administrativas" y se vuelve una superficie continua donde cada coordenada $(x, y)$ posee un valor de bienestar $W$.
+
+### B. El Gradiente Espacial ($\nabla W$)
+En el espacio continuo, el gradiente apunta en la dirección de la máxima pendiente. Calculamos las derivadas parciales del bienestar respecto a la longitud ($x$) y la latitud ($y$):
+
+```math
+\nabla W = \left( \frac{\partial W}{\partial x}, \frac{\partial W}{\partial y} \right)
+```
+**Interpretación:** Si $\frac{\partial W}{\partial x}$ es muy alto, significa que al caminar pocos metros se cruza una "frontera invisible" de desigualdad masiva (un choque severo de realidades vecinas).
+
+### C. El Tensor de Tensión Local ($\alpha$)
+El gradiente por sí solo mide desigualdad material, pero no la fractura de la interioridad del territorio. Introducimos $\alpha$, calculado como la **varianza estadística** entre las 4 dimensiones de la MBHT en cada coordenada específica:
+
+```math
+\alpha(x,y) = \text{Var}(D_{amb}, D_{seg}, D_{soc}, D_{acc})
+```
+**Interpretación:** $\alpha$ mide la *fractura del habitar*. Si un barrio tiene buena accesibilidad pero sufre balaceras diarias, la varianza dimensional se dispara. El territorio está internamente en conflicto.
+
+### D. La Deformación del Tensor Métrico ($g_{ij}$)
+Asumimos que el territorio pasivo tiene una métrica euclidiana ($g_{xx}=1, g_{yy}=1$). Pero la suma de la desigualdad exterior ($\nabla W$) y la fractura interior ($\alpha$) *deforma* la geometría del espacio, al igual que la masa deforma el espacio-tiempo en la relatividad general. 
+
+El nuevo tensor métrico deformado se define como:
+```math
+g_{xx} = 1 + \alpha \left( \frac{\partial W}{\partial x} \right)^2 
+```
+```math
+g_{yy} = 1 + \alpha \left( \frac{\partial W}{\partial y} \right)^2 
+```
+
+### E. La Fricción Relacional (Los Muros Invisibles)
+Para visualizar esto en un mapa 3D (un observable escalar), extraemos la **Traza** del tensor métrico y le restamos la traza del espacio plano original ($1+1=2$):
+
+```math
+\text{Friccion} = (g_{xx} + g_{yy}) - 2 = \alpha \left[ \left( \frac{\partial W}{\partial x} \right)^2 + \left( \frac{\partial W}{\partial y} \right)^2 \right] = \alpha |\nabla W|^2
+```
+
+**Conclusión Física:** Esta ecuación nos dice que la "barrera territorial" (el muro rojo del modelo 3D) solo se levanta si existen ambas condiciones a la vez: un choque de realidades vecinas ($|\nabla W|^2 > 0$) potenciado por una fractura interna del bienestar en ese mismo lugar ($\alpha > 0$). El resultado es la Fricción Territorial.
+
+---
+
+## 4. El Píxel Ontológico (Sistema H3)
+Para proyectar la fricción en la web, utilizamos la malla hexagonal **H3** desarrollada por Uber. ¿Por qué un hexágono? Porque preserva la vecindad espacial de forma isométrica (todas las celdas vecinas están a la misma distancia del centro). El hexágono actúa como el **píxel ontológico**, agrupando la tensión geométrica sin distorsionarla con grillas cuadradas ni límites administrativos, honrando el Axioma 1 de la teoría.
+
+## 5. Stack Tecnológico
+* **Python:** Lenguaje principal de procesamiento estadístico.
+* **GeoPandas & SciPy:** Tratamiento espacial de las bases MBHT, árboles de vecindad y derivadas parciales espaciales.
+* **H3 (Uber):** Sistema de indexación geoespacial jerárquico.
+* **Deck.GL / PyDeck:** Motor de renderizado WebGL para pintar y extruir las deformaciones tensoriales masivas directo en la nube.
+
+---
+
+## 📚 6. Citas y Bibliografía
 
 Al citar o utilizar este modelo interactivo, por favor hacer referencia a las siguientes obras fundamentales:
 
