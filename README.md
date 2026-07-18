@@ -10,7 +10,7 @@ Este repositorio aloja la validación empírica y la visualización interactiva 
 ---
 
 ## 🔗 Modelo 3D Interactivo
-**👉 [Ver el Dashboard Interactivo Aquí](https://[TU-USUARIO].github.io/ontologia-territorial-mbht/)** 
+**👉 [Ver el Dashboard Interactivo Aquí](https://OntologiaTerritorial.github.io/ontologia-territorial-mbht/)** 
 
 *(Para la mejor experiencia, accede desde un computador. Mantén presionado el **clic derecho** para rotar e inclinar el modelo topológico).*
 
