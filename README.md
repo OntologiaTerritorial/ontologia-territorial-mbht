@@ -35,7 +35,10 @@ Un territorio puede promediar un índice de bienestar alto, pero si tiene una se
 ### C. Fricción Relacional (Los "Muros" Invisibles)
 Calculamos los gradientes espaciales del bienestar general ($dx, dy$) y los modulamos por la Tensión ($\alpha$).
 La ecuación de la traza del tensor métrico deforma el mapa geométricamente:
-$$ Friccion = (1 + \alpha \cdot \nabla BHT_x^2) + (1 + \alpha \cdot \nabla BHT_y^2) - 2 $$
+
+```math
+Friccion = (1 + \alpha \cdot \nabla BHT_x^2) + (1 + \alpha \cdot \nabla BHT_y^2) - 2
+```
 
 El resultado de esta fricción territorial se inyecta directamente como la elevación (eje Z) en la topología. Las zonas rojas que se levantan como muros representan físicamente barreras de fricción severa que quiebran las trayectorias de vida.
 
